@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Loot Vault Admin</title>
+<link rel="stylesheet" href="/theme.css">
+</head>
+<body class="admin">
+<header class="hud">
+  <div class="brand">LOOT VAULT / ADMIN</div>
+  <button class="btn ghost" id="logout" hidden>Log out</button>
+</header>
+
+<main>
+  <!-- Login -->
+  <section class="panel" id="login" hidden>
+    <h2>Admin login</h2>
+    <label for="pw">Password</label>
+    <input type="password" id="pw" autocomplete="current-password">
+    <p id="loginErr" style="color:var(--bad);min-height:1.4em"></p>
+    <button class="btn pink" id="loginBtn">Log in</button>
+  </section>
+
+  <div id="app" hidden>
+    <!-- Stats -->
+    <section class="panel">
+      <h2>Dashboard</h2>
+      <div class="grid tiles" id="tiles"></div>
+    </section>
+
+    <!-- Settings -->
+    <section class="panel">
+      <h2>Settings</h2>
+      <div class="row">
+        <div><label for="siteTitle">Site title</label><input type="text" id="siteTitle" maxlength="40"></div>
+        <div><label for="rewardName">Reward name</label><input type="text" id="rewardName" maxlength="60"></div>
+      </div>
+      <label for="tagline">Tagline</label><input type="text" id="tagline" maxlength="140">
+      <div class="row">
+        <div><label for="videoId">YouTube video (link or ID)</label><input type="text" id="videoId"></div>
+        <div><label for="channelId">Channel ID (starts with UC)</label><input type="text" id="channelId"></div>
+      </div>
+      <label>Quests required</label>
+      <div class="checks">
+        <label><input type="checkbox" id="req-watch"> Watch</label>
+        <label><input type="checkbox" id="req-subscribe"> Subscribe</label>
+        <label><input type="checkbox" id="req-like"> Like</label>
+        <label><input type="checkbox" id="req-comment"> Comment</label>
+      </div>
+      <div class="row">
+        <div><label for="watchPercent">Watch percent needed (10 to 100)</label><input type="number" id="watchPercent" min="10" max="100"></div>
+        <div><label for="linkTtlMinutes">Download link lifetime (minutes)</label><input type="number" id="linkTtlMinutes" min="1" max="120"></div>
+      </div>
+      <label for="maxDownloadsPerUser">Max downloads per account</label>
+      <input type="number" id="maxDownloadsPerUser" min="1" max="50">
+      <div style="margin-top:16px"><button class="btn" id="saveCfg">Save settings</button></div>
+    </section>
+
+    <!-- Loot file -->
+    <section class="panel">
+      <h2>Loot file</h2>
+      <label for="mode">Delivery</label>
+      <select id="mode">
+        <option value="file">Upload a file to this server</option>
+        <option value="url">Redirect to an external HTTPS link</option>
+      </select>
+      <div id="fileBox">
+        <p id="fileInfo" style="color:var(--muted)"></p>
+        <input type="file" id="fileInput" style="color:var(--text)">
+        <div class="progress"><i id="upBar"></i></div>
+        <p id="upText" style="color:var(--muted);min-height:1.4em"></p>
+        <button class="btn danger" id="delFile">Remove file</button>
+      </div>
+      <div id="urlBox" hidden>
+        <label for="url">External download URL</label>
+        <input type="text" id="url" placeholder="https://...">
+        <p style="color:var(--muted);font-size:.85rem">Use a private or expiring link (for example a pre-signed storage URL). A public link can be shared by anyone who finds it.</p>
+        <button class="btn" id="saveUrl">Save delivery settings</button>
+      </div>
+    </section>
+
+    <!-- Unlocks -->
+    <section class="panel">
+      <h2>Unlocked players</h2>
+      <p><a class="btn ghost" href="/admin/api/export.csv">Export CSV</a></p>
+      <div class="scroll"><table>
+        <thead><tr><th>Player</th><th>Last unlock</th><th>Downloads</th><th></th></tr></thead>
+        <tbody id="unlocks"></tbody>
+      </table></div>
+    </section>
+
+    <!-- Blocked -->
+    <section class="panel">
+      <h2>Blocked accounts</h2>
+      <div class="scroll"><table>
+        <thead><tr><th>Player</th><th>Blocked on</th><th></th></tr></thead>
+        <tbody id="blocked"></tbody>
+      </table></div>
+      <div class="row" style="margin-top:12px">
+        <div><label for="blockId">Block by channel ID</label><input type="text" id="blockId" placeholder="UC..."></div>
+        <div style="align-self:end"><button class="btn pink" id="blockBtn">Block</button></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="/admin.js"></script>
+</body>
+</html>

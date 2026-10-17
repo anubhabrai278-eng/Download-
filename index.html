@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loot Vault</title>
+<link rel="stylesheet" href="/theme.css">
+</head>
+<body>
+<header class="hud">
+  <div class="brand" id="brand">LOOT VAULT</div>
+  <div class="badge" id="badge" hidden>
+    <img id="avatar" alt="">
+    <span id="uname"></span>
+    <a href="/auth/logout">Sign out</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1 id="title">LOOT VAULT</h1>
+    <p id="tagline"></p>
+  </section>
+
+  <div class="screen"><div id="player"></div></div>
+
+  <section class="panel" id="signin" hidden>
+    <h2 class="display" style="font-size:1.6rem;margin-bottom:6px">Player 1, press start</h2>
+    <p style="color:var(--muted);margin:0 0 14px">Sign in with Google so the vault can check your quests. It only gets read-only access to your YouTube activity.</p>
+    <a class="btn pink" href="/auth/google">Sign in with Google</a>
+  </section>
+
+  <section class="panel" id="questPanel" hidden>
+    <div class="meter" id="meter"></div>
+    <ol id="quests"></ol>
+    <button class="btn block" id="verify" style="margin-top:14px">Verify my quests</button>
+    <p id="msg" role="status"></p>
+  </section>
+
+  <section class="panel loot" id="loot" hidden>
+    <h2 id="lootTitle">Vault unlocked</h2>
+    <p id="lootNote"></p>
+    <a class="btn gold" id="claim" href="#">Claim loot</a>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>

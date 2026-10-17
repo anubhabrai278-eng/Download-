@@ -1,0 +1,13 @@
+{
+  "name": "loot-vault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gaming-style download gate: watch, subscribe, like and comment to unlock a file.",
+  "engines": { "node": ">=20.6" },
+  "scripts": {
+    "start": "node --env-file=.env server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
